@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block content %}
+{% load static %}
+
+<div class="home-container container">
+    <div class="home-text-container">
+        <h1 class="serif">
+            <span class="grn-text">Track Your</span>
+            <br>
+            <span class="grn-text-sub">Health Journey</span>
+        </h1>
+
+        <p>MyHealthConsole is your comprehensive healthcare companion, designed to empower you with seamless management and access to your health information. With our user-friendly interface and powerful features, we're here to simplify your healthcare journey and put you in control of your well-being.</p>
+    </div>
+    <div class="home-btns">
+ 
+        <a href="{% url 'signup' %}" class="waves-effect waves-light btn signup">Sign up</a>
+        <a href="{% url 'login' %}" class="waves-effect waves-light btn-flat btn-outline grn-text">Login</a>
+
+    </div>
+
+    <div class="landing-img-container">
+        <img src="{% static 'img/landing-img.jpg' %}">   
+    </div>
+
+    <div class="org-container">
+        <h1 class="serif grn-text">Used by 10,000+ companies<br>around the world
+        </h1>
+
+        <div class="orgs">
+            <img src="{% static 'img/org/cigna-logo.jpg' %}">           
+            <img src="{% static 'img/org/cvs-logo.jpg' %}">   
+            <img src="{% static 'img/org/mckesson-logo.jpg' %}">   
+            <img src="{% static 'img/org/elevance-logo.jpg' %}">   
+        </div>
+
+        <p>Our commitment to providing reliable and comprehensive healthcare solutions sets us apart as a trusted partner for employee well-being.</p>
+    </div>
+
+    <div class="iphone-container">
+        <img src="{% static 'img/iphone-mockup.jpg' %}">
+        <div class="iphone-text-container">
+            <h1 class="serif">Your health partner</h1>
+            <p>Welcome to a new era of personalized healthcare management. Our cutting-edge app is designed to revolutionize the way you track and manage your prescriptions, care providers, appointments, and more. With a user-friendly interface and comprehensive features, staying on top of your health has never been this effortless.</p>
+        </div>
+    </div>
+</div>
+
+
+<footer class="homepage-footer">
+    <section class="footer-hero">
+        <h1 class="white-text serif">Sign up now</h1>
+        <a href="{% url 'signup' %}" class="waves-effect waves-light btn footer-signup">Join now</a>
+    </section>
+    <section class="footer-link-container">
+        <p class="footer-copyright">©2023 MyHealthConsole | All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://www.facebook.com/" target="blank"><i class="fa-brands fa-facebook-f fa-lg"></i></a>
+            <a href="https://www.twitter.com/" target="blank"><i class="fa-brands fa-twitter fa-lg"></i></a>
+            <a href="https://www.instagram.com/" target="blank"><i class="fa-brands fa-instagram fa-lg"></i></a>
+            <a href="https://www.linkedin.com/" target="blank"><i class="fa-brands fa-linkedin-in fa-lg"></i></a>
+        </div>
+    </section>
+</footer>
+
+
+{% endblock %}

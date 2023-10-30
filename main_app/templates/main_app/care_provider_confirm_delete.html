@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <h1 class="serif grn-text">Delete Care Provider</h1>
+
+  <h4>
+    Are you sure you want to delete
+    <span class="grn-text">{{ object.name }}</span>?
+  </h4>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes - Delete!" class="btn grn-bg" />
+    <a href="{% url 'index' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

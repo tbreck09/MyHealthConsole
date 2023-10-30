@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="MyHealthConsole - Your Health Management Platform">
+  <meta name="keywords" content="health, management, platform, MyHealthConsole">
+  <title>MyHealthConsole</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="navbar-fixed">
+    <nav class="transparent">
+      <div class="nav-wrapper">
+        <ul>
+          <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons grn-text">menu</i></a></li>
+          <li><a href="{% url 'home' %}" class="left myc-logo"><img src="{% static 'img/myc-logo.jpg' %}">           
+          </a></li>
+        </ul>
+        <ul class="right">
+          <li><a href="{% url 'about' %}" class="grn-text">About</a></li>
+          {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'logout' %}" class="grn-text">Log Out</a>
+            </li>
+            <li>
+              <a href="{% url 'users_detail' user.id %}" class="grn-text">
+                <i class="fa-regular fa-user fa-sm"></i> Profile
+            </li>
+          {% else %} 
+            <li>
+              <a href="{% url 'login' %}" class="grn-text">Log In</a>
+            </li>
+            <li>
+              <a href="{% url 'signup' %}" class="btn green darken-4">Sign Up</a>
+            </li>
+          {% endif %}
+        </ul>
+
+      </div>
+    </nav>
+
+  </header>
+
+  <div class="sidenav-container">
+    <ul id="slide-out" class="sidenav">
+      <li>
+        <div class="user-view">
+          {% comment %} <div class="background">
+          </div> {% endcomment %}
+          <img src="{% static 'img/myc-logo.jpg' %}">
+          <div class="circle-image-container">
+            {% for photo in user.photo_set.all %}
+              {% include 'circle_photo.html' with photo_url=photo.url %}
+            {% empty %}
+              <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+            {% endfor %}
+          </div>
+          
+          {% comment %} <img class="responsive-img card-panel" src="{{photo.url}}" /> {% endcomment %}
+          <a href="#name"><span class="grn-text name">{{ user.get_username }}</span></a>
+          <a href="#email"><span class="grn-text email">{{ user.email }}</span></a>
+        </div>
+      </li>
+
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'users_detail' user.id %}"><i class="material-icons">verified_user</i>My Profile</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">My Console</a></li>
+        <li>
+          <a href="{% url 'care_providers_create' %}"><i class="material-icons">add_circle_outline</i>Add a Care Provider</a>
+        </li>
+        <li>
+          <a href="{% url 'prescriptions_create' %}"><i class="material-icons">add_circle_outline</i>Add a Prescription</a>
+        </li>
+        <li>
+          <a href="{% url 'index' %}"><i class="material-icons">accessibility
+          </i>Care Providers</a>
+        </li>
+        <li>
+          <a href="{% url 'prescription_index' %}"><i class="material-icons">description</i>Prescriptions</a>
+        </li>
+        <li class="nav-btm-link">
+          <div class="divider"></div>
+          <a href="{% url 'logout' %}"><i class="material-icons">exit_to_app</i>Log Out</a>
+        </li>
+      {% else %} 
+        <li>
+          <a href="{% url 'signup' %}"><i class="material-icons">create</i>Sign up</a>
+        </li>
+        <li class="nav-btm-link">
+          <a href="{% url 'login' %}"><i class="material-icons">exit_to_app</i>Log In</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <main>
+    {% block content %}
+    <!-- Main content of each template goes here -->
+    {% endblock %}
+  </main>
+  
+
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

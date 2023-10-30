@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+{% load static %}
+
+<section class="about-landing-container">
+    <div class="container">
+        <h1 class="serif grn-text">Discover the difference</h1>
+        <p>At MyHealthConsole, we believe that your health journey should be personalized, connected, and empowering. Our innovative healthcare app is designed to put you in control of your well-being by seamlessly tracking your prescriptions, appointments, and care providers all in one place.
+        <br><br>We're dedicated to providing you with the convenience and confidence you deserve, so you can focus on living your life to the fullest. Join us on this transformative health management experience and experience a new level of care tailored just for you.</p>
+        <br>
+        <br>
+        <a href="{% url 'signup' %}" class="">Heard enough? <span class="about-signup">Sign up now.</span></a>
+    </div>
+</section>    
+
+<section class="container about-grid-container">
+    <div class="about-grid-item">
+        <img src="{% static 'img/about/sun.png' %}">
+        <h3>24/7 peace of mind</h3>
+        <p>With our app's around-the-clock support services, our dedicated team is here to assist you whenever you need it. We're committed to providing you with the help and guidance you deserve, 24/7.</p>           
+    </div>
+    <div class="about-grid-item">
+        <img src="{% static 'img/about/pin.png' %}">           
+        <h3>Location services</h3>  
+        <p>Navigate your health journey effortlessly with our app's advanced location services. Wherever life takes you, our app adapts, providing tailored support and resources based on your current location.</p>          
+    </div>
+    <div class="about-grid-item">
+        <img src="{% static 'img/about/house.png' %}">   
+        <h3>Home support</h3>
+        <p>Integrate your health management into your modern lifestyle. Our app harmonizes with smart home technology, allowing you to monitor your well-being from the comfort of your living space.</p>                    
+    </div>
+</section>
+
+
+<footer class="homepage-footer">
+    <section class="footer-hero">
+        <h1 class="white-text serif">Sign up now</h1>
+        <a href="{% url 'signup' %}" class="waves-effect waves-light btn footer-signup">Join now</a>
+    </section>
+    <section class="footer-link-container">
+        <p class="footer-copyright">©2023 MyHealthConsole | All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://www.facebook.com/" target="blank"><i class="fa-brands fa-facebook-f fa-lg"></i></a>
+            <a href="https://www.twitter.com/" target="blank"><i class="fa-brands fa-twitter fa-lg"></i></a>
+            <a href="https://www.instagram.com/" target="blank"><i class="fa-brands fa-instagram fa-lg"></i></a>
+            <a href="https://www.linkedin.com/" target="blank"><i class="fa-brands fa-linkedin-in fa-lg"></i></a>
+        </div>
+    </section>
+</footer>
+
+{% endblock %}

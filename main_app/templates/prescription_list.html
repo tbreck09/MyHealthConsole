@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<div class="container flex-col">
+  <h1 class="serif grn-text">Your Prescriptions</h1>
+  <hr class="pres-hr" />
+
+  <section class="prescription-cards-container">
+    {% for prescription in prescriptions %}
+    <div class="row">
+      <div class="col s12 m7">
+        <a href="{% url 'prescription_detail' prescription.id %}">
+          <div class="card">
+            <div>
+              <div class="card-image">
+                <span class="card-title">{{ prescription.name }}</span>
+              </div>
+              <div class="card-content">
+                <p class="subheader">description</p>
+                <p class="description">{{ prescription.description }}</p>
+                <p class="subheader">instructions</p>
+                <p class="description">{{ prescription.instructions }}</p>
+                <p class="subheader">date issued</p>
+                <p class="description">{{ prescription.date_issued }}</p>
+              </div>
+            </div>
+            <div class="card-action">
+              <a
+                class="btn grn-bg"
+                href="{% url 'prescription_update' prescription.id %}"
+                >Edit</a
+              >
+              <a
+                class="btn-flat btn-outline grn-text"
+                href="{% url 'delete_prescription' prescription.id user.id %}"
+                >Delete</a
+              >
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+
+    <a href="{% url 'prescriptions_create' %}" class="btn orange-bg"
+      >New Prescription</a
+    >
+  </section>
+</div>
+
+<div class="pres-bg">
+  <img src="{% static 'img/pres-bg.jpg' %}" />
+</div>
+
+<footer class="homepage-footer">
+  <section class="footer-link-container">
+    <p class="footer-copyright">©2023 MyHealthConsole | All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://www.facebook.com/" target="blank"
+        ><i class="fa-brands fa-facebook-f fa-lg"></i
+      ></a>
+      <a href="https://www.twitter.com/" target="blank"
+        ><i class="fa-brands fa-twitter fa-lg"></i
+      ></a>
+      <a href="https://www.instagram.com/" target="blank"
+        ><i class="fa-brands fa-instagram fa-lg"></i
+      ></a>
+      <a href="https://www.linkedin.com/" target="blank"
+        ><i class="fa-brands fa-linkedin-in fa-lg"></i
+      ></a>
+    </div>
+  </section>
+</footer>
+
+{% endblock %}

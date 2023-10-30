@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <h1 class="serif grn-text">Update User Information</h1>
+  <form method="post">
+    {% csrf_token %} {{ user_form.username.label_tag }} {{ user_form.username }}
+    {{ user_form.email.label_tag }} {{ user_form.email }}
+    {{user_form.first_name.label_tag }} {{ user_form.first_name }}
+    {{user_form.last_name.label_tag }} {{ user_form.last_name }}
+    <button class="btn grn-bg" type="submit">Update</button>
+  </form>
+  <a href="{% url 'password_change' %}">Change Password </a><br />
+  <a href="{% url 'users_detail' user.id %}">Cancel</a>
+</div>
+{% endblock %}

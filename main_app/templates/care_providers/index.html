@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %}
+{% load static %}
+
+<div class="container flex-col">
+
+  <h1 class="serif grn-text">Care Providers</h1>
+  <hr class="pres-hr">
+
+  <section class="care-container">
+    {% for care_provider in care_providers %}
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">{{ care_provider.name }}</span>
+          <p class="subheader">location:</p>
+          <p>{{ care_provider.facility }}</p>
+          <p class="subheader">department:</p> 
+          <p>{{ care_provider.department }}</p>
+          {% if user.is_authenticated %}
+            <div class="card-action">
+              <a href="{% url 'care_provider_update' care_provider.id %}" class="btn grn-bg">Edit</a>
+              <a href="{% url 'care_provider_delete' care_provider.id %}" class="btn-flat btn-outline grn-text">Delete</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+    
+    <a href="{% url 'care_providers_create' %}" class="btn orange-bg">Add care provider</a>
+
+  </section>  
+</div>
+
+<div class="care-bg">
+</div>
+
+
+{% comment %} <div class="pres-bg">
+  <img src="{% static 'img/pres-bg.jpg' %}">
+</div> {% endcomment %}
+
+<footer class="homepage-footer care-footer">
+  <section class="footer-link-container">
+      <p class="footer-copyright">©2023 MyHealthConsole | All rights reserved.</p>
+      <div class="footer-links">
+          <a href="https://www.facebook.com/" target="blank"><i class="fa-brands fa-facebook-f fa-lg"></i></a>
+          <a href="https://www.twitter.com/" target="blank"><i class="fa-brands fa-twitter fa-lg"></i></a>
+          <a href="https://www.instagram.com/" target="blank"><i class="fa-brands fa-instagram fa-lg"></i></a>
+          <a href="https://www.linkedin.com/" target="blank"><i class="fa-brands fa-linkedin-in fa-lg"></i></a>
+      </div>
+  </section>
+</footer>
+
+{% endblock %}
